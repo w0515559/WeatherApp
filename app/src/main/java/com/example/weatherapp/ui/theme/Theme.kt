@@ -17,6 +17,7 @@ private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFF1C1125),
     onPrimary = Color(0xFFFFFFFF),
 
+    // top and bottom bar
     primaryContainer = Color(0xFF0D0116),
     onPrimaryContainer = Color(0xFFFFFFFF),
 
@@ -26,6 +27,7 @@ private val DarkColorScheme = darkColorScheme(
     surface = Color(0xFF0F0318),
     onSurface = Color(0xFFFFFFFF),
 
+    // Cards
     surfaceVariant = Color(0xFF1C1125),
     onSurfaceVariant = Color(0xFFFFFFFF)
 )

@@ -114,7 +114,44 @@ fun WeeklyForecast(innerPadding: PaddingValues) {
             maxWindSpeed = 22,
             rainChance = 30,
             rainAmount = 1
-        )
+        ),
+        Weather(
+            date = today.plusDays(7),
+            condition = "Rain",
+            temperatureMax = 14,
+            temperatureMin = 6,
+            feelsLike = 11,
+            humidity = 95,
+            windDirection = "N",
+            maxWindSpeed = 45,
+            rainChance = 90,
+            rainAmount = 3
+        ),
+        Weather(
+            date = today.plusDays(8),
+            condition = "Sunny",
+            temperatureMax = 18,
+            temperatureMin = 11,
+            feelsLike = 17,
+            humidity = 70,
+            windDirection = "E",
+            maxWindSpeed = 20,
+            rainChance = 0,
+            rainAmount = 0
+        ),
+        Weather(
+            date = today.plusDays(9),
+            condition = "Cloudy",
+            temperatureMax = 16,
+            temperatureMin = 8,
+            feelsLike = 14,
+            humidity = 80,
+            windDirection = "SW",
+            maxWindSpeed = 25,
+            rainChance = 20,
+            rainAmount = 0
+        ),
+
     )
 
 
@@ -134,9 +171,9 @@ fun WeeklyForecast(innerPadding: PaddingValues) {
             }
 
             // temp icons
-            val weatherIcon = when (weather.condition.lowercase()) {
-                "sunny" -> Icons.Default.WbSunny
-                "rain" -> Icons.Default.WaterDrop
+            val weatherIcon = when (weather.condition) {
+                "Sunny" -> Icons.Default.WbSunny
+                "Rain" -> Icons.Default.WaterDrop
                 else -> Icons.Default.Cloud
             }
 

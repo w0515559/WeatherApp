@@ -167,18 +167,20 @@ fun DailyForecast() {
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             WeatherDetailCard(
+                icon = Icons.Default.Thermostat,
                 title = "Feels like",
                 value = "${weather.feelsLike}°C",
                 detail = "Apparent temperature",
-                icon = Icons.Default.Thermostat,
+
                 modifier = Modifier.weight(1f)
             )
 
             WeatherDetailCard(
+                icon = Icons.Default.WaterDrop,
                 title = "Rainfall",
                 value = "${weather.rainChance}%",
                 detail = "${weather.rainAmount} mm expected",
-                icon = Icons.Default.WaterDrop,
+
                 modifier = Modifier.weight(1f)
             )
         }
@@ -188,18 +190,20 @@ fun DailyForecast() {
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             WeatherDetailCard(
+                icon = Icons.Default.Air,
                 title = "Max wind",
                 value = "${weather.maxWindSpeed} km/h",
                 detail = "Direction: ${weather.windDirection}",
-                icon = Icons.Default.Air,
+
                 modifier = Modifier.weight(1f)
             )
 
             WeatherDetailCard(
+                icon = Icons.Default.WaterDrop,
                 title = "Humidity",
                 value = "${weather.humidity}%",
                 detail = "Relative humidity",
-                icon = Icons.Default.WaterDrop,
+
                 modifier = Modifier.weight(1f)
             )
         }
