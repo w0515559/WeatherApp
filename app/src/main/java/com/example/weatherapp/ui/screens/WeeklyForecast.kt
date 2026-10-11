@@ -2,26 +2,37 @@ package com.example.weatherapp.ui.screens
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.DividerDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.example.weatherapp.models.Weather
+import com.example.weatherapp.ui.Components.WeeklyCard
 import java.time.LocalDate
+import androidx.compose.foundation.layout.fillMaxWidth
+import java.util.Locale
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cloud
+import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material.icons.filled.WbSunny
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WeeklyForecast(innerPadding: PaddingValues) {
 
+    val today = LocalDate.now()
+
+
+
     val weatherForecast = listOf(
         Weather(
-            date = LocalDate.now(),
+            date = today,
             condition = "Cloudy",
             temperatureMax = 19,
             temperatureMin = 9,
@@ -33,7 +44,7 @@ fun WeeklyForecast(innerPadding: PaddingValues) {
             rainAmount = 0
         ),
         Weather(
-            date = LocalDate.now().plusDays(1),
+            date = today.plusDays(1),
             condition = "Rain",
             temperatureMax = 14,
             temperatureMin = 6,
@@ -45,37 +56,97 @@ fun WeeklyForecast(innerPadding: PaddingValues) {
             rainAmount = 3
         ),
         Weather(
-            date = LocalDate.now().plusDays(2),
+            date = today.plusDays(2),
             condition = "Sunny",
             temperatureMax = 18,
             temperatureMin = 11,
             feelsLike = 17,
-            humidity = 86,
+            humidity = 70,
             windDirection = "E",
             maxWindSpeed = 20,
             rainChance = 0,
             rainAmount = 0
+        ),
+        Weather(
+            date = today.plusDays(3),
+            condition = "Cloudy",
+            temperatureMax = 16,
+            temperatureMin = 8,
+            feelsLike = 14,
+            humidity = 80,
+            windDirection = "SW",
+            maxWindSpeed = 25,
+            rainChance = 20,
+            rainAmount = 0
+        ),
+        Weather(
+            date = today.plusDays(4),
+            condition = "Rain",
+            temperatureMax = 13,
+            temperatureMin = 7,
+            feelsLike = 10,
+            humidity = 92,
+            windDirection = "W",
+            maxWindSpeed = 32,
+            rainChance = 75,
+            rainAmount = 5
+        ),
+        Weather(
+            date = today.plusDays(5),
+            condition = "Sunny",
+            temperatureMax = 20,
+            temperatureMin = 12,
+            feelsLike = 19,
+            humidity = 65,
+            windDirection = "S",
+            maxWindSpeed = 15,
+            rainChance = 0,
+            rainAmount = 0
+        ),
+        Weather(
+            date = today.plusDays(6),
+            condition = "Cloudy",
+            temperatureMax = 17,
+            temperatureMin = 10,
+            feelsLike = 15,
+            humidity = 78,
+            windDirection = "SE",
+            maxWindSpeed = 22,
+            rainChance = 30,
+            rainAmount = 1
         )
-
     )
 
+
     LazyColumn(
-        modifier = Modifier.padding(innerPadding)
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(20.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(weatherForecast) { weather ->
-            Row()
-            {
-//                Image(
-//                    painter = painterResource(id = pokemon.resourceId),
-//                    contentDescription = pokemon.name
-//                )
-
-                Text(weather.date.toString())
-
-                Text(weather.condition)
+            val title = when (weather.date) {
+                today -> "Today"
+                today.plusDays(1) -> "Tomorrow"
+                else -> weather.date.dayOfWeek.getDisplayName(
+                    java.time.format.TextStyle.FULL,
+                    Locale.getDefault()
+                )
             }
 
-            HorizontalDivider(Modifier, DividerDefaults.Thickness, DividerDefaults.color)
+            // temp icons
+            val weatherIcon = when (weather.condition.lowercase()) {
+                "sunny" -> Icons.Default.WbSunny
+                "rain" -> Icons.Default.WaterDrop
+                else -> Icons.Default.Cloud
+            }
+
+            WeeklyCard(
+                weather = weather,
+                title = title,
+                icon = weatherIcon,
+                modifier = Modifier.fillMaxWidth()
+            )
+
         }
     }
 }

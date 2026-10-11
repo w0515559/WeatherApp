@@ -44,7 +44,7 @@ fun Navigation() {
         TopAppBar(
             colors = topAppBarColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
-                titleContentColor = MaterialTheme.colorScheme.primary,
+                titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             ),
             title = {
                 Text("Weather")
@@ -61,10 +61,10 @@ fun Navigation() {
                 // daily weather
                 NavigationBarItem(
                     icon = { Icon(imageVector = Icons.Default.WbSunny, contentDescription = "DailyForecast") },
-                    label = { Text("DailyForecast") },
-                    selected = selectedIndex == 1,
+                    label = { Text("Today") },
+                    selected = selectedIndex == 0,
                     onClick = {
-                        selectedIndex = 1
+                        selectedIndex = 0
                         navController.navigate(route="DailyForecast"){
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
@@ -78,10 +78,10 @@ fun Navigation() {
                 //  Weekly forecast
                 NavigationBarItem(
                     icon = { Icon(imageVector = Icons.Default.CalendarMonth, contentDescription = "WeeklyForecast") },
-                    label = { Text("WeeklyForecast") },
-                    selected = selectedIndex == 0,
+                    label = { Text("Weekly Forecast") },
+                    selected = selectedIndex == 1,
                     onClick = {
-                        selectedIndex = 0
+                        selectedIndex = 1
                         navController.navigate(route="WeeklyForecast"){
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
