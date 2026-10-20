@@ -23,10 +23,12 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.weatherapp.MainViewModel
 import com.example.weatherapp.ui.screens.DailyForecast
 import com.example.weatherapp.ui.screens.WeeklyForecast
 
@@ -38,6 +40,9 @@ fun Navigation() {
 
     val navController = rememberNavController()
     var selectedIndex by remember { mutableIntStateOf(0) } // default set to 0
+
+    // initialize ViewModel (Shared)
+    val viewModel: MainViewModel = viewModel()
 
     Scaffold(
         topBar = {
@@ -106,10 +111,10 @@ fun Navigation() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = "DailyForecast") {
-                DailyForecast()
+                DailyForecast(viewModel)
             }
             composable(route = "WeeklyForecast") {
-                WeeklyForecast(innerPadding)
+                WeeklyForecast(viewModel)
             }
         }
     }

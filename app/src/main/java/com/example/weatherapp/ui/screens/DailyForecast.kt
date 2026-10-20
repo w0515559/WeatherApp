@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.weatherapp.MainViewModel
 import com.example.weatherapp.models.Weather
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -41,10 +42,10 @@ import com.example.weatherapp.ui.Components.WeatherDetailCard
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 
-fun DailyForecast() {
+fun DailyForecast(viewModel: MainViewModel) {
     val weather = remember {
         Weather(
-            date = LocalDate.now().plusDays(1),
+            date = LocalDate.now(),
             condition = "Rain",
             temperatureCurrent = 12,
             temperatureMax = 14,

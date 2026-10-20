@@ -40,7 +40,7 @@ fun WeatherDetailCard(
             Icon(
                 imageVector = icon,
                 contentDescription = "Weather detail icon",
-                tint = MaterialTheme.colorScheme.onPrimary,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.size(24.dp)
             )
 

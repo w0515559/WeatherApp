@@ -20,11 +20,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.material.icons.filled.WbSunny
+import com.example.weatherapp.MainViewModel
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun WeeklyForecast(innerPadding: PaddingValues) {
+fun WeeklyForecast(viewModel: MainViewModel) {
 
     val today = LocalDate.now()
 
