@@ -47,7 +47,7 @@ fun Navigation() {
                 titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             ),
             title = {
-                Text("Weather")
+                Text("Halifax, Nova Scotia")
             },
 
         )

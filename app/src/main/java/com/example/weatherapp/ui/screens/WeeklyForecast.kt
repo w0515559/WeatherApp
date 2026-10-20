@@ -161,6 +161,7 @@ fun WeeklyForecast(innerPadding: PaddingValues) {
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(weatherForecast) { weather ->
+
             val title = when (weather.date) {
                 today -> "Today"
                 today.plusDays(1) -> "Tomorrow"
