@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.weatherapp.models.Weather
+import com.example.weatherapp.data.Dao.Weather
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 

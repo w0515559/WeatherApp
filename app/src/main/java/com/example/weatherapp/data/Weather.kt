@@ -1,7 +1,6 @@
-package com.example.weatherapp.models
+package com.example.weatherapp.data.Dao
 
 import java.time.LocalDate
-import java.util.Date
 
 data class Weather(
     val date: LocalDate,
@@ -15,6 +14,5 @@ data class Weather(
     val maxWindSpeed: Int, // KM/H
     val rainChance: Int, // %
     val rainAmount: Int, // mm
-    )
-
+)
 // Most of this is subject to change depending on future api

@@ -28,12 +28,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.MainViewModel
-import com.example.weatherapp.models.Weather
+import com.example.weatherapp.data.Dao.Weather
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
