@@ -12,32 +12,37 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.weatherapp.data.Dao.Weather
+import coil3.compose.AsyncImage
+import com.example.weatherapp.data.Dao.ForecastDay
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+import kotlin.math.roundToInt
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WeeklyCard(
-    weather: Weather,
-    title: String,
-    icon: ImageVector,
+    forecast: ForecastDay,
+    // date, condition.text, min/max temp, max wind speed, precip % and amount
+    icon: String,
     modifier: Modifier = Modifier
 ) {
-    val dateText = weather.date.format(
+
+    val dateFormatter = remember {
         DateTimeFormatter.ofPattern(
-            "EEE, MMM d",
+            "EEEE, MMMM d",
             Locale.getDefault()
         )
-    )
+    }
+
+    val dateText = LocalDate.parse(forecast.date).format(dateFormatter)
 
     Card(
         modifier = modifier,
@@ -59,12 +64,10 @@ fun WeeklyCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(end = 12.dp)
+                    text = forecast.day.condition.text,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
 
                 Text(
@@ -73,12 +76,7 @@ fun WeeklyCard(
                 )
             }
 
-            Text(
-                text = weather.condition,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onSurface
-            )
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
             ) {
@@ -87,31 +85,39 @@ fun WeeklyCard(
                         horizontalArrangement = Arrangement.spacedBy(24.dp)
                     ) {
                         Text(
-                            text = "High: ${weather.temperatureMax}°C",
+                            text = "High: ${forecast.day.maxTempC.roundToInt()}°C",
                             style = MaterialTheme.typography.titleMedium
                         )
 
                         Text(
-                            text = "Low: ${weather.temperatureMin}°C",
+                            text = "Low: ${forecast.day.minTempC.roundToInt()}°C",
                             style = MaterialTheme.typography.titleMedium
                         )
-
                     }
+
                     Text(
-                        text = "Chance of rain: ${weather.rainChance}%",
+                        text = "Precipitation: ${forecast.day.chanceRain}%,  ${forecast.day.precipitationAmount} mm",
                         style = MaterialTheme.typography.bodyMedium
                     )
 
+                    Text(
+                        text = "Humidity: ${forecast.day.avgHumidity.roundToInt()}%",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+
+                    Text(
+                        text = "Wind: ${forecast.day.maxWindKPH.roundToInt()} km/h",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Absolute.Right
                 ) {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = "Forecast icon",
-                        tint = MaterialTheme.colorScheme.onPrimary,
-                        modifier = Modifier.size(64.dp)
+                    AsyncImage(
+                        model = "https:" + icon,
+                        contentDescription = "Condition image",
+                        modifier = Modifier.size(88.dp)
                     )
                 }
             }
