@@ -10,19 +10,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.weatherapp.data.Dao.Weather
-import java.time.LocalDate
 import androidx.compose.foundation.layout.fillMaxWidth
-import java.util.Locale
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cloud
-import androidx.compose.material.icons.filled.WaterDrop
-import androidx.compose.material.icons.filled.WbSunny
 import com.example.weatherapp.MainViewModel
-import com.example.weatherapp.data.Dao.ForecastDay
 import com.example.weatherapp.ui.Components.WeeklyCard
-import okhttp3.internal.format
-import java.time.format.DateTimeFormatter
+
 
 
 @RequiresApi(Build.VERSION_CODES.O)

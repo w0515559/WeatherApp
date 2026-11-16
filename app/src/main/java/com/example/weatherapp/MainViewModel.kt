@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.Dao.Weather
 import com.example.weatherapp.data.WeatherApi
@@ -23,10 +22,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(app)
 
-    var location by mutableStateOf<Location?>(null) // NOTE: import Android's built-in Location class  android.location.Location
+    var location by mutableStateOf<Location?>(null)
         private set
 
-    @SuppressLint("MissingPermission") // silence warning
+    @SuppressLint("MissingPermission")
     fun refreshLocation() {
         fusedLocationClient
             .getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)

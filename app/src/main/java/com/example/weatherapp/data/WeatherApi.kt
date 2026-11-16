@@ -2,7 +2,6 @@ package com.example.weatherapp.data
 
 import com.example.weatherapp.data.Dao.Weather
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface WeatherApi {

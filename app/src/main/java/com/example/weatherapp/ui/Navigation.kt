@@ -2,7 +2,6 @@ package com.example.weatherapp.ui
 
 import android.Manifest
 import android.os.Build
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -35,7 +34,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.weatherapp.MainViewModel
 import com.example.weatherapp.ui.screens.DailyForecast
 import com.example.weatherapp.ui.screens.WeeklyForecast
-import kotlin.math.log
 
 
 @RequiresApi(Build.VERSION_CODES.O)
